@@ -1,0 +1,29 @@
+{
+	"manifest_version": 3,
+	"name": "OneCookie",
+	"version": "1.0.0",
+	"description": "Ensure only one Cookie Clicker tab is open on your devices with this extension.",
+	"icons": {"128": "icon.png"},
+	"permissions": ["storage", "tabs"],
+	"background": {
+		"service_worker": "background.js"
+	},
+	"action": {},
+	"content_scripts": [{
+		"matches": [
+			"http://orteil.dashnet.org/cookieclicker/",
+			"http://orteil.dashnet.org/cookieclicker/beta/",
+			"https://orteil.dashnet.org/cookieclicker/",
+			"https://orteil.dashnet.org/cookieclicker/beta/"
+		],
+		"js": ["js/content.js"],
+		"run_at": "document_end"
+    }],
+	"web_accessible_resources": [{
+		"resources": ["/js/inject/*"],
+		"matches": [
+			"https://orteil.dashnet.org/*",
+			"http://orteil.dashnet.org/*"
+		]
+	}]
+}
